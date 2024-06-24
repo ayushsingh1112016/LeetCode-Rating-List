@@ -38,9 +38,10 @@ const QuestionsList = ({ data }) => {
   };
 
   const filterQuestions = () => {
+    const { min, max } = filterRange;
     const filtered = data.filter(question => 
-      question.Rating >= filterRange.min && 
-      question.Rating <= filterRange.max &&
+      question.Rating >= min && 
+      question.Rating <= (max === Infinity ? question.Rating : max) &&
       question.ProblemIndex.includes(filterIndex)
     );
     setQuestions(filtered);
@@ -86,7 +87,7 @@ const QuestionsList = ({ data }) => {
         <input 
           type="number" 
           placeholder="Max Rating" 
-          onChange={(e) => setFilterRange({ ...filterRange, max: parseFloat(e.target.value) })} 
+          onChange={(e) => setFilterRange({ ...filterRange, max: parseFloat(e.target.value) || Infinity })} 
         />
         <input 
           type="text" 
