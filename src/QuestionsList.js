@@ -40,12 +40,22 @@ const QuestionsList = ({ data }) => {
   const filterQuestions = () => {
     const { min, max } = filterRange;
     const filtered = data.filter(question => 
-      question.Rating >= min && 
-      question.Rating <= (max === Infinity ? question.Rating : max) &&
+      question.Rating >= (min || 0) && 
+      question.Rating <= (max || Infinity) &&
       question.ProblemIndex.includes(filterIndex)
     );
     setQuestions(filtered);
     setCurrentPage(1);
+  };
+
+  const handleMinChange = (e) => {
+    const value = e.target.value ? parseFloat(e.target.value) : 0;
+    setFilterRange(prevRange => ({ ...prevRange, min: value }));
+  };
+
+  const handleMaxChange = (e) => {
+    const value = e.target.value ? parseFloat(e.target.value) : Infinity;
+    setFilterRange(prevRange => ({ ...prevRange, max: value }));
   };
 
   const toggleImportant = (id) => {
@@ -82,12 +92,12 @@ const QuestionsList = ({ data }) => {
         <input 
           type="number" 
           placeholder="Min Rating" 
-          onChange={(e) => setFilterRange({ ...filterRange, min: parseFloat(e.target.value) })} 
+          onChange={handleMinChange} 
         />
         <input 
           type="number" 
           placeholder="Max Rating" 
-          onChange={(e) => setFilterRange({ ...filterRange, max: parseFloat(e.target.value) || Infinity })} 
+          onChange={handleMaxChange} 
         />
         <input 
           type="text" 
