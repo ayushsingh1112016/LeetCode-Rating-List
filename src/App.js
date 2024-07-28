@@ -21,7 +21,7 @@ const App = () => {
 const headerStyle = {
   textAlign: 'center',
   padding: '20px',
-  backgroundColor: '#1e90ff', 
+  backgroundColor: 'black', 
   color: '#ffffff', 
 };
 
