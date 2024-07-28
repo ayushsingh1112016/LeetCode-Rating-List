@@ -37,6 +37,11 @@ const QuestionsList = ({ data }) => {
     setSortOrder(order);
   };
 
+  const sortByIdDesc = () => {
+    const sorted = [...questions].sort((a, b) => b.ID - a.ID);
+    setQuestions(sorted);
+  };
+
   const filterQuestions = () => {
     const { min, max } = filterRange;
     const filtered = data.filter(question => 
@@ -87,6 +92,7 @@ const QuestionsList = ({ data }) => {
       <div>
         <button onClick={() => sortQuestions('asc')}>Sort Rating Min to Max</button>
         <button onClick={() => sortQuestions('desc')}>Sort Rating Max to Min</button>
+        <button onClick={sortByIdDesc}>Default Sort</button>
       </div>
       <div>
         <input 
