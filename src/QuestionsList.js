@@ -94,7 +94,7 @@ const QuestionsList = ({ data }) => {
         <button onClick={() => sortQuestions('asc')}>Sort Rating Min to Max</button>
         <button onClick={() => sortQuestions('desc')}>Sort Rating Max to Min</button>
         <button onClick={sortByIdDesc}>Default Sort</button>
-        <div style="padding: 2px; margin-left: 2px;">Total : {questions.length}</div>
+        <div>  Total : {questions.length}</div>
       </div>
       <div>
         <input 
