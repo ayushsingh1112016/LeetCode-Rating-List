@@ -86,6 +86,7 @@ const QuestionsList = ({ data }) => {
   const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
   const totalPages = Math.ceil(questions.length / questionsPerPage);
+  
 
   return (
     <div>
@@ -93,6 +94,7 @@ const QuestionsList = ({ data }) => {
         <button onClick={() => sortQuestions('asc')}>Sort Rating Min to Max</button>
         <button onClick={() => sortQuestions('desc')}>Sort Rating Max to Min</button>
         <button onClick={sortByIdDesc}>Default Sort</button>
+        <div>Total : {questions.length}</div>
       </div>
       <div>
         <input 
